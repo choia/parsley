@@ -6,6 +6,7 @@ const connectDB = async () => {
   try {
     await mongoose.connect(DB, {
       useNewUrlParser: true,
+      useCreateIndex: true,
       useUnifiedTopology: true,
     })
     console.log('MongoDB connected')
