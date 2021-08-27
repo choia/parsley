@@ -16,11 +16,13 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-  const { name, mealType } = req.body
+  const { date, weekDay, mealName, mealType } = req.body
 
   try {
     const newMeal = new Meal({
-      name,
+      date,
+      weekDay,
+      mealName,
       mealType,
     })
 
@@ -33,11 +35,13 @@ router.post('/', async (req, res) => {
 })
 
 router.put('/:id', async (req, res) => {
-  const { name, mealType } = req.body
+  const { date, weekDay, mealName, mealType } = req.body
 
   const updateMeals = {}
 
-  if (name) updateMeals.name = name
+  if (date) updateMeals.date = date
+  if (weekDay) updateMeals.weekDay = weekDay
+  if (mealName) updateMeals.mealName = mealName
   if (mealType) updateMeals.mealType = mealType
 
   try {
