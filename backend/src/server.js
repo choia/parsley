@@ -12,8 +12,4 @@ app.use(express.json())
 
 app.use('/meals', mealRouter)
 
-// app.get('/', (req, res) => {
-//   res.status(200).send('Parsley-App')
-// })
-
 app.listen(PORT, () => console.log(`Server is listening on PORT ${PORT}`))

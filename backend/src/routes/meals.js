@@ -35,20 +35,18 @@ router.post('/', async (req, res) => {
 })
 
 router.put('/:id', async (req, res) => {
-  const { date, weekDay, mealName, mealType } = req.body
+  const { mealName, mealType } = req.body
 
-  const updateMeals = {}
-
-  if (date) updateMeals.date = date
-  if (weekDay) updateMeals.weekDay = weekDay
   if (mealName) updateMeals.mealName = mealName
   if (mealType) updateMeals.mealType = mealType
 
   try {
     let meal = await Meal.findById(req.params.id)
-    console.log(meal)
 
-    meal = await Meal.findOneAndUpdate(req.params.id, updateMeals, {
+    meal.mealName.push(mealName)
+    meal.mealType.push(mealType)
+
+    meal = await Meal.findOneAndUpdate(req.params.id, meal, {
       new: true,
     })
     res.json(meal)
