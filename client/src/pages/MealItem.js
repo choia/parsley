@@ -1,9 +1,16 @@
-import { useContext } from 'react'
-
-const MealItem = () => {
+const MealItem = ({ mealName, mealType }) => {
   return (
     <div>
-      <h2>Meal Item2</h2>
+      {mealType.map((mType) => (
+        <div key={mType.id}>
+          <li>{mType}</li>
+        </div>
+      ))}
+      {mealName.map((mName) => (
+        <div key={mName.id}>
+          <li>{mName}</li>
+        </div>
+      ))}
     </div>
   )
 }

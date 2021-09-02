@@ -1,24 +1,28 @@
 import { useState, useEffect } from 'react'
+import MealList from './MealList'
 
 const Home = () => {
   useEffect(() => {
     getMeals()
   }, [])
 
-  const [mealName, setMealName] = useState([])
+  const [meals, setMeals] = useState([])
 
   const getMeals = async () => {
     try {
       const res = await fetch('/meals')
-      const data = await res.json()
-      setMealName(data[0].mealName)
-      console.log(data)
+      const meals = await res.json()
+
+      setMeals(meals)
+      // console.log(meals)
     } catch (e) {}
   }
 
   return (
-    <div>
-      <h2>{mealName}</h2>
+    <div key={meals._id}>
+      {meals.map((mealList) => (
+        <MealList mealList={mealList} />
+      ))}
     </div>
   )
 }
