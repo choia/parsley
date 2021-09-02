@@ -37,19 +37,22 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
   const { mealName, mealType } = req.body
 
+  updateMeals = {}
   if (mealName) updateMeals.mealName = mealName
   if (mealType) updateMeals.mealType = mealType
 
   try {
     let meal = await Meal.findById(req.params.id)
+    if (!meal) {
+      return res.status(404).send('Record does not exist')
+    }
 
-    meal.mealName.push(mealName)
-    meal.mealType.push(mealType)
-
-    meal = await Meal.findOneAndUpdate(req.params.id, meal, {
-      new: true,
-    })
-    res.json(meal)
+    updatedMeal = await Meal.findByIdAndUpdate(
+      req.params.id,
+      { $push: updateMeals },
+      { new: true }
+    )
+    res.json(updatedMeal)
   } catch (e) {
     console.log(e.message)
     res.status(500).send('Sever Error')
