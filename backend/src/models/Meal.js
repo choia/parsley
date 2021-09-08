@@ -1,30 +1,35 @@
 const mongoose = require('mongoose')
-const MealSchema = mongoose.Schema({
-  date: {
-    type: Date,
-    required: true,
-    default: Date.now,
-  },
+const MealSchema = mongoose.Schema(
+  {
+    date: {
+      type: Date,
+      required: true,
+      default: Date.now(),
+    },
 
-  weekDay: {
-    type: String,
-    required: true,
-    default: '',
-  },
-
-  mealName: [
-    {
+    weekDay: {
       type: String,
       required: true,
+      default: '',
     },
-  ],
 
-  mealType: [
-    {
-      type: String,
-      required: true,
-    },
-  ],
-})
+    mealName: [
+      {
+        type: String,
+        required: true,
+      },
+    ],
+
+    mealType: [
+      {
+        type: String,
+        required: true,
+      },
+    ],
+  },
+  {
+    timestamps: true,
+  }
+)
 
 module.exports = mongoose.model('meal', MealSchema)
