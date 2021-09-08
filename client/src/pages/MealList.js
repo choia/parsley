@@ -2,7 +2,7 @@ import intlFormat from 'date-fns/intlFormat'
 import MealItem from './MealItem'
 
 const MealList = ({ mealList }) => {
-  const { mealName, mealType, date, weekDay } = mealList
+  const { mealName, mealType, date } = mealList
 
   const currentDate = intlFormat(new Date(date), {
     localeMatcher: 'best fit',
@@ -15,7 +15,6 @@ const MealList = ({ mealList }) => {
   return (
     <div>
       <h2>{currentDate}</h2>
-      <h3>{weekDay}</h3>
       <MealItem mealName={mealName} mealType={mealType} />
     </div>
   )

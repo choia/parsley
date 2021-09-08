@@ -14,14 +14,13 @@ const Home = () => {
       const meals = await res.json()
 
       setMeals(meals)
-      // console.log(meals)
     } catch (e) {}
   }
 
   return (
-    <div key={meals._id}>
+    <div>
       {meals.map((mealList) => (
-        <MealList mealList={mealList} />
+        <MealList key={mealList._id} mealList={mealList} />
       ))}
     </div>
   )

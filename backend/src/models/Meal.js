@@ -7,12 +7,6 @@ const MealSchema = mongoose.Schema(
       default: Date.now(),
     },
 
-    weekDay: {
-      type: String,
-      required: true,
-      default: '',
-    },
-
     mealName: [
       {
         type: String,
