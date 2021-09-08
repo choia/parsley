@@ -1,15 +1,21 @@
+import { Fragment } from 'react'
+
 const MealItem = ({ mealName, mealType }) => {
+  // TODO: create custom hook
+  const mealNameAndType = mealName.reduce((mealNameAndType, current, index) => {
+    mealNameAndType[mealType[index]] = current
+    return mealNameAndType
+  }, {})
+
+  const m = Object.entries(mealNameAndType)
+  // console.log(m)
+
   return (
     <div>
-      {mealType.map((mType) => (
-        <div key={mType.id}>
-          <li>{mType}</li>
-        </div>
-      ))}
-      {mealName.map((mName) => (
-        <div key={mName.id}>
-          <li>{mName}</li>
-        </div>
+      {m.map((meal) => (
+        <li>
+          {meal[0]}: {meal[1]}
+        </li>
       ))}
     </div>
   )
